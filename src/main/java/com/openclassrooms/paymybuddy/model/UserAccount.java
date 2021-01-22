@@ -37,7 +37,9 @@ public class UserAccount {
      * Set of all established connection with other user account.
      * They will be necessary for transfer.
      */
-    @OneToMany(targetEntity = UserAccount.class, mappedBy = "id")
+    @ManyToMany
+    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "user_account_id", referencedColumnName = "user_account_id"),
+            inverseJoinColumns = @JoinColumn(name = "connection_account_id", referencedColumnName = "user_account_id"))
     private Set<UserAccount> connection;
 
     /**

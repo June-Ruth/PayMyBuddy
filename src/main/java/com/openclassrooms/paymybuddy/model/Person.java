@@ -55,7 +55,7 @@ public class Person {
      * @see BankAccount
      */
     @OneToOne
-    @JoinColumn(name = "bank_account_rib")
+    @JoinColumn(name = "bank_account_rib", nullable = false)
     private BankAccount bankAccount;
 
     /**
