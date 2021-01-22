@@ -1,7 +1,7 @@
 # Pay My Buddy - work in progress
 
 ## Class diagram
-![UML](Buddy_UML.png)
+![UML](src/main/resources/static/Buddy_UML.png)
 
 ## Data model
-![MPD](Buddy_MPD.png)
+![MPD](src/main/resources/static/Buddy_MPD.png)
