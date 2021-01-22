@@ -1,12 +1,6 @@
 package com.openclassrooms.paymybuddy.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -22,13 +16,15 @@ public class UserAccount {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_account_id")
     private int id;
 
     /**
      * Associated person.
      * @see Person
      */
-    @Column(name = "user_person_id")
+    @OneToOne
+    @JoinColumn(name = "user_person_id")
     private Person user;
 
     /**

@@ -22,6 +22,7 @@ public class Transfer {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "transfer_id")
     private int id;
 
     /**
@@ -36,6 +37,7 @@ public class Transfer {
      * User account which receives the transfer.
      * @see UserAccount
      */
+    @ManyToOne
     @JoinColumn(name = "receiver_user_account_id")
     private UserAccount receiver;
 

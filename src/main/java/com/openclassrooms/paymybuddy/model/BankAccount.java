@@ -17,6 +17,7 @@ public class BankAccount {
      * Use as primary key in DataBase.
      */
     @Id
+    @Column(name = "rib")
     private long rib;
 
     /**

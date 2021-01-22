@@ -58,7 +58,7 @@ ALTER TABLE pay_my_buddy.person
 
 ALTER TABLE pay_my_buddy.user_account
     ADD CONSTRAINT fk_user_person_id
-        FOREIGN KEY (user_account_id)
+        FOREIGN KEY (user_person_id)
             REFERENCES person(person_id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION;
@@ -79,7 +79,7 @@ ALTER TABLE pay_my_buddy.transfer
     ADD INDEX ind_receiver (receiver_user_account_id);
 
 ALTER TABLE pay_my_buddy.transfer_log
-    ADD CONSTRAINT fk_user
+    ADD CONSTRAINT fk_user_transfer
         FOREIGN KEY (user_account_id)
             REFERENCES user_account(user_account_id)
             ON DELETE NO ACTION
@@ -91,7 +91,7 @@ ALTER TABLE pay_my_buddy.transfer_log
             ON UPDATE NO ACTION;
 
 ALTER TABLE pay_my_buddy.connection
-    ADD CONSTRAINT fk_user
+    ADD CONSTRAINT fk_user_connection
         FOREIGN KEY (user_account_id)
             REFERENCES user_account(user_account_id)
             ON DELETE NO ACTION
