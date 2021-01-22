@@ -37,11 +37,15 @@ CREATE TABLE pay_my_buddy.transfer(
     PRIMARY KEY (transfer_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.network (
-    network_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE pay_my_buddy.transfer_log (
+    user_account_id BIGINT UNSIGNED NOT NULL,
+    transfer_id BIGINT UNSIGNED NOT NULL
+) ENGINE = InnoDB;
+
+CREATE TABLE pay_my_buddy.connection (
     user_account_id BIGINT UNSIGNED NOT NULL,
     connection_account_id BIGINT UNSIGNED NOT NULL,
-    PRIMARY KEY (network_id)
+    PRIMARY KEY (user_account_id, connection_account_id)
 ) ENGINE = InnoDB;
 
 ALTER TABLE pay_my_buddy.person
@@ -74,7 +78,19 @@ ALTER TABLE pay_my_buddy.transfer
     ADD INDEX ind_sender (sender_user_account_id),
     ADD INDEX ind_receiver (receiver_user_account_id);
 
-ALTER TABLE pay_my_buddy.network
+ALTER TABLE pay_my_buddy.transfer_log
+    ADD CONSTRAINT fk_user
+        FOREIGN KEY (user_account_id)
+            REFERENCES user_account(user_account_id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    ADD CONSTRAINT fk_transfer
+        FOREIGN KEY (transfer_id)
+            REFERENCES transfer(transfer_id)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION;
+
+ALTER TABLE pay_my_buddy.connection
     ADD CONSTRAINT fk_user
         FOREIGN KEY (user_account_id)
             REFERENCES user_account(user_account_id)
