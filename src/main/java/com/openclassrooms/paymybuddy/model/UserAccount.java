@@ -16,16 +16,41 @@ public class UserAccount {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_account_id")
+    @Column(name = "user_id")
     private int id;
 
     /**
-     * Associated person.
-     * @see Person
+     * First name.
+     */
+    @Column(name = "first_name")
+    private String firstName;
+
+    /**
+     * Last name.
+     */
+    @Column(name = "last_name")
+    private String lastName;
+
+    /**
+     * Email.
+     * Must be unique.
+     */
+    @Column(name = "email")
+    private String email;
+
+    /**
+     * Password.
+     */
+    @Column(name = "password")
+    private String password;
+
+    /**
+     * Associated bank account.
+     * @see BankAccount
      */
     @OneToOne
-    @JoinColumn(name = "user_person_id")
-    private Person user;
+    @JoinColumn(name = "bank_account_rib", nullable = false)
+    private BankAccount bankAccount;
 
     /**
      * Balance available on user account.
@@ -38,8 +63,8 @@ public class UserAccount {
      * They will be necessary for transfer.
      */
     @ManyToMany
-    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "user_account_id", referencedColumnName = "user_account_id"),
-            inverseJoinColumns = @JoinColumn(name = "connection_account_id", referencedColumnName = "user_account_id"))
+    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "connection_id", referencedColumnName = "user_id"))
     private Set<UserAccount> connection;
 
     /**
@@ -52,16 +77,28 @@ public class UserAccount {
     /**
      * Public constructor.
      * Parameters are all needed and non nullable.
-     * @param pUser .
+     * @param pFirstName .
+     * @param pLastName .
+     * @param pEmail .
+     * @param pPassword .
+     * @param pBankAccount .
      * @param pBalance .
      * @param pConnection .
      * @param pTransferLog .
      */
-    public UserAccount(final Person pUser,
+    public UserAccount(final String pFirstName,
+                       final String pLastName,
+                       final String pEmail,
+                       final String pPassword,
+                       final BankAccount pBankAccount,
                        final double pBalance,
                        final Set<UserAccount> pConnection,
                        final Set<Transfer> pTransferLog) {
-        user = pUser;
+        firstName = pFirstName;
+        lastName = pLastName;
+        email = pEmail;
+        password = pPassword;
+        bankAccount = pBankAccount;
         balance = pBalance;
         connection = pConnection;
         transferLog = pTransferLog;
@@ -85,19 +122,83 @@ public class UserAccount {
     }
 
     /**
-     * Getter user.
-     * @return user
+     * Getter first name.
+     * @return first name
      */
-    public Person getUser() {
-        return user;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
-     * Setter user.
-     * @param pUser to set
+     * Setter first name.
+     * @param pFirstName to set.
      */
-    public void setUser(final Person pUser) {
-        user = pUser;
+    public void setFirstName(final String pFirstName) {
+        firstName = pFirstName;
+    }
+
+    /**
+     * Getter last name.
+     * @return last name
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Setter last name.
+     * @param pLastName to set
+     */
+    public void setLastName(final String pLastName) {
+        lastName = pLastName;
+    }
+
+    /**
+     * Getter email.
+     * @return email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Setter email.
+     * @param pEmail to set
+     */
+    public void setEmail(final String pEmail) {
+        email = pEmail;
+    }
+
+    /**
+     * Getter password.
+     * @return password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Setter password.
+     * @param pPassword to set
+     */
+    public void setPassword(final String pPassword) {
+        password = pPassword;
+    }
+
+    /**
+     * Getter Bank Account.
+     * @return bank account
+     */
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    /**
+     * Setter Bank Account.
+     * @param pBankAccount to set
+     */
+    public void setBankAccount(final BankAccount pBankAccount) {
+        bankAccount = pBankAccount;
     }
 
     /**

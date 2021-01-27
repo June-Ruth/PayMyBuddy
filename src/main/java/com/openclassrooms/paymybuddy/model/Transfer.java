@@ -30,7 +30,7 @@ public class Transfer {
      * @see UserAccount
      */
     @ManyToOne
-    @JoinColumn(name = "sender_user_account_id")
+    @JoinColumn(name = "sender_user_id")
     private UserAccount sender;
 
     /**
@@ -38,7 +38,7 @@ public class Transfer {
      * @see UserAccount
      */
     @ManyToOne
-    @JoinColumn(name = "receiver_user_account_id")
+    @JoinColumn(name = "receiver_user_id")
     private UserAccount receiver;
 
     /**
@@ -56,7 +56,7 @@ public class Transfer {
     /**
      * Amount of transfer without fee.
      */
-    @Column(name = "amout")
+    @Column(name = "amount")
     private double amount;
 
     /**
