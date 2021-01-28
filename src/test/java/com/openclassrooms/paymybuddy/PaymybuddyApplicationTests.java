@@ -2,7 +2,7 @@ package com.openclassrooms.paymybuddy;
 
 import com.openclassrooms.paymybuddy.web.controller.BankAccountController;
 import com.openclassrooms.paymybuddy.web.controller.TransferController;
-import com.openclassrooms.paymybuddy.web.controller.UserAccountController;
+import com.openclassrooms.paymybuddy.web.controller.UserController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ class PaymybuddyApplicationTests {
 	private TransferController transferController;
 
 	@Autowired
-	private UserAccountController userAccountController;
+	private UserController userController;
 
 	@Autowired
 	private BankAccountController bankAccountController;
@@ -24,7 +24,7 @@ class PaymybuddyApplicationTests {
 	@Test
 	void contextLoads() {
 		assertNotNull(transferController);
-		assertNotNull(userAccountController);
+		assertNotNull(userController);
 		assertNotNull(bankAccountController);
 	}
 

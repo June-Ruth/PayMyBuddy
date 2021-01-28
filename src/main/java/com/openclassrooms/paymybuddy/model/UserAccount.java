@@ -49,7 +49,7 @@ public class UserAccount {
     /**
      * Password.
      */
-    @NotNull(message = "Password cannot ")
+    @NotNull(message = "Password cannot be null")
     @Column(name = "password")
     private String password;
 
@@ -58,7 +58,7 @@ public class UserAccount {
      * @see BankAccount
      */
     @Valid
-    @NotNull
+    @NotNull(message = "Bank account cannot be null")
     @OneToOne
     @JoinColumn(name = "bank_account_rib", nullable = false)
     private BankAccount bankAccount;
@@ -127,7 +127,7 @@ public class UserAccount {
 
     /**
      * Setter ID.
-     * ID is auto-generated, should not be accessible.
+     * ID is auto-generated, should not be accessible. //TODO
      * @param pId to set
      */
     private void setId(final int pId) {
