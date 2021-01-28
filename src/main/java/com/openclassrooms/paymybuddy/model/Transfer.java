@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 /**
@@ -29,6 +31,7 @@ public class Transfer {
      * User account which sends the transfer.
      * @see UserAccount
      */
+    @Valid
     @ManyToOne
     @JoinColumn(name = "sender_user_id")
     private UserAccount sender;
@@ -37,6 +40,7 @@ public class Transfer {
      * User account which receives the transfer.
      * @see UserAccount
      */
+    @Valid
     @ManyToOne
     @JoinColumn(name = "receiver_user_id")
     private UserAccount receiver;
@@ -44,6 +48,7 @@ public class Transfer {
     /**
      * Description by sender of the transfer.
      */
+    @Size(max = 60, message = "Description must be less than 60 characters")
     @Column(name = "description")
     private String description;
 
@@ -56,12 +61,16 @@ public class Transfer {
     /**
      * Amount of transfer without fee.
      */
+    @Positive(message = "Amount to transfer cannot be zero or negative")
+    @Max(value = 100000, message = "Amount to transfer should not be greater than 100 000€")
     @Column(name = "amount")
     private double amount;
 
     /**
      * Associated fee of the transfer.
      */
+    @PositiveOrZero(message = "Fee cannot be negative")
+    @Max(value = 1000, message = "Fee should not be greater than 1000€")
     @Column(name = "fee")
     private double fee;
 

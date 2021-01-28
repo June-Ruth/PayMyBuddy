@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 /**
  * Bank account contact associated to french person.
@@ -16,6 +19,7 @@ public class BankAccount {
      * RIB of the person.
      * Use as primary key in DataBase.
      */
+    @Positive(message = "RIB must be positive")
     @Id
     @Column(name = "rib")
     private long rib;
@@ -23,18 +27,24 @@ public class BankAccount {
     /**
      * Bank name where the account is based.
      */
+    @NotNull(message = "Bank name cannot be null")
+    @Size(max = 40, message = "Bank name must be less than 40 characters")
     @Column(name = "bank")
     private String bank;
 
     /**
      * IBAN associated to the RIB.
      */
+    @NotNull(message = "IBAN cannot be null")
+    @Size(max = 40, message = "IBAN must be less than 40 characters")
     @Column(name = "iban")
     private String iban;
 
     /**
      * BIC associated to the RIB.
      */
+    @NotNull(message = "BIC cannot be null")
+    @Size(max = 15, message = "BIC must be less than 15 characters")
     @Column(name = "bic")
     private String bic;
 

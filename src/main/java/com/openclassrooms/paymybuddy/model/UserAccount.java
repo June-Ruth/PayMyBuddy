@@ -1,6 +1,8 @@
 package com.openclassrooms.paymybuddy.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 /**
@@ -22,12 +24,16 @@ public class UserAccount {
     /**
      * First name.
      */
+    @NotNull(message = "First name cannot be null")
+    @Size(max = 15, message = "First name must be less than 15 characters")
     @Column(name = "first_name")
     private String firstName;
 
     /**
      * Last name.
      */
+    @NotNull(message = "Last name cannot be null")
+    @Size(max = 15, message = "Last name must be less than 15 characters")
     @Column(name = "last_name")
     private String lastName;
 
@@ -35,12 +41,15 @@ public class UserAccount {
      * Email.
      * Must be unique.
      */
+    @Email(message = "Email should be valid")
+    @Size(max = 60, message = "Email must be less than 60 characters")
     @Column(name = "email")
     private String email;
 
     /**
      * Password.
      */
+    @NotNull(message = "Password cannot ")
     @Column(name = "password")
     private String password;
 
@@ -48,6 +57,8 @@ public class UserAccount {
      * Associated bank account.
      * @see BankAccount
      */
+    @Valid
+    @NotNull
     @OneToOne
     @JoinColumn(name = "bank_account_rib", nullable = false)
     private BankAccount bankAccount;
@@ -55,6 +66,8 @@ public class UserAccount {
     /**
      * Balance available on user account.
      */
+    @PositiveOrZero(message = "Balance cannot be negative")
+    @Max(value = 100000, message = "Balance should not be greater than 1000 000€")
     @Column(name = "balance")
     private double balance;
 
