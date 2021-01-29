@@ -28,6 +28,9 @@ public class TransferController {
         return null;
     }
 
+    //TODO : ? see les derniers transferts que j'ai effectué en tant que user et sender en version simplifié(voir maquette)
+
+
     //TODO : see a specific transfer (users concerned only)
     @GetMapping(value = "/transfers/{transfer_id}")
     public Transfer getTransfer(@PathVariable final int transfer_id) {

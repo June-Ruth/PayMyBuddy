@@ -4,6 +4,9 @@ import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.model.dto.UserInfoDTO;
 import com.openclassrooms.paymybuddy.model.dto.UserRestrictedInfoDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class DtoConverter {
     /**
      * Private empty constructor.
@@ -37,5 +40,17 @@ public final class DtoConverter {
         userDTO.setBankAccount(userAccount.getBankAccount());
         userDTO.setBalance(userAccount.getBalance());
         return userDTO;
+    }
+
+    /**
+     * Convert simplify UserAccountInfoDTO to a complete UserAccount.
+     * If UserAccount already exists, it we will take network and transfer log from it.
+     * If not, network and transfer log will be set as empty ArrayList.
+     * @param userInfoDTO to convert.
+     * @return complete UserAccount
+     */
+    public static UserAccount convertUserInfoDTOtoUserAccount(final UserInfoDTO userInfoDTO) {
+        //TODO
+        return null;
     }
 }

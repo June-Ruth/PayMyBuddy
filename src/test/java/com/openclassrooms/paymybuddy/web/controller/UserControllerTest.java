@@ -24,7 +24,8 @@ public class UserControllerTest {
     // - avec des arguments invalides
 
     //TODO : Test getAllUserAccounts
-    // - quand est ADMIN
+    // - quand est ADMIN et ok
+    // - quand est ADMIN et nok
     // - quand n'est pas admin
 
     //TODO : Test getUserAccountInfo
@@ -49,5 +50,7 @@ public class UserControllerTest {
     //TODO : test updateToAddNewConnection
 
     //TODO : test updateToDeleteOldConnection
+
+    //TODO : test getAllUserTransfers
 
 }

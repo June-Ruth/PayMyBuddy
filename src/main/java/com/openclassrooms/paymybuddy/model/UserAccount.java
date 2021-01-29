@@ -59,7 +59,7 @@ public class UserAccount {
      */
     @Valid
     @NotNull(message = "Bank account cannot be null")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bank_account_rib", nullable = false)
     private BankAccount bankAccount;
 
@@ -75,7 +75,7 @@ public class UserAccount {
      * Set of all established connection with other user account.
      * They will be necessary for transfer.
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "connection_id", referencedColumnName = "user_id"))
     private Set<UserAccount> connection;
