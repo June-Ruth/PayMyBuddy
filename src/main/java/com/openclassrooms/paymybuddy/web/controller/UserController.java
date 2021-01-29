@@ -21,8 +21,7 @@ public class UserController {
 
     //TODO : create user account (and bank account)
     @PostMapping(value = "/users")
-    public UserAccount createUserAccount(@PathVariable final int id,
-                                         @Valid @RequestBody final UserAccount userAccount) {
+    public UserAccount createUserAccount(@Valid @RequestBody final UserAccount userAccount) {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{user_id}")
@@ -64,7 +63,7 @@ public class UserController {
     public void updateToAddNewConnection(@PathVariable final int user_id,
                                          @RequestParam(name = "email") final String email) { }
 
-    //TODO : supprimer une connections à son network à partir de l'adresse email ou id?
+    //TODO : supprimer une connections à son network
     @PutMapping(value = "/users/{user_id}/connections/{connection_id}")
     public void updateToDeleteOldConnection(@PathVariable final int user_id,
                                             @PathVariable final int connection_id) { }

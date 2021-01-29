@@ -1,6 +1,5 @@
 package com.openclassrooms.paymybuddy;
 
-import com.openclassrooms.paymybuddy.web.controller.BankAccountController;
 import com.openclassrooms.paymybuddy.web.controller.TransferController;
 import com.openclassrooms.paymybuddy.web.controller.UserController;
 import org.junit.jupiter.api.Test;
@@ -18,14 +17,10 @@ class PaymybuddyApplicationTests {
 	@Autowired
 	private UserController userController;
 
-	@Autowired
-	private BankAccountController bankAccountController;
-
 	@Test
 	void contextLoads() {
 		assertNotNull(transferController);
 		assertNotNull(userController);
-		assertNotNull(bankAccountController);
 	}
 
 }
