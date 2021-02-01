@@ -3,6 +3,7 @@ package com.openclassrooms.paymybuddy.web.controller;
 import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.model.dto.UserInfoDTO;
+import com.openclassrooms.paymybuddy.service.TransferService;
 import com.openclassrooms.paymybuddy.service.UserAccountService;
 import com.openclassrooms.paymybuddy.util.DtoConverter;
 import org.apache.logging.log4j.LogManager;
@@ -20,16 +21,20 @@ public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger(AdminController.class);
 
     private UserAccountService userAccountService;
+    private TransferService transferService;
 
-    public AdminController(final UserAccountService pUserAccountService) {
+    public AdminController(final UserAccountService pUserAccountService,
+                           final TransferService pTransferService) {
         Objects.requireNonNull(pUserAccountService);
         userAccountService = pUserAccountService;
+        transferService = pTransferService;
     }
 
     //TODO ; read all user (ADMIN ONLY)
     @GetMapping(value = "/admin/users")
     public List<UserInfoDTO> getAllUserAccounts() {
         List<UserAccount> userAccounts = userAccountService.findAllUserAccounts();
+
         List<UserInfoDTO> result = new ArrayList<>();
         for (UserAccount userAccount : userAccounts) {
             UserInfoDTO userDTO = DtoConverter.convertUserAccountToUserInfoDTO(userAccount);
@@ -42,6 +47,7 @@ public class AdminController {
     //TODO : see all transfer (ADMIN ONLY)
     @GetMapping(value = "/admin/transfers")
     public List<Transfer> getAllTransfers() {
+        transferService.findAllTransfers();
         return null;
     }
 }

@@ -38,7 +38,7 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public Transfer findTransfer(int transfer_id) {
+    public Transfer findTransferById(int transfer_id) {
         return null;
     }
 

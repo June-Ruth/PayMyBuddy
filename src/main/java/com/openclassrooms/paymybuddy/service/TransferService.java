@@ -8,10 +8,10 @@ public interface TransferService {
 
     Transfer saveTransfer(Transfer transfer);
 
-    Transfer findTransfer(int transfer_id);
+    Transfer findTransferById(int transfer_id);
 
     List<Transfer> findTransferBySender(int sender_id);
 
-
+    List<Transfer> findAllTransfers();
 
 }

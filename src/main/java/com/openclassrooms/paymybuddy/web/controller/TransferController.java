@@ -52,7 +52,7 @@ public class TransferController {
     //TODO : see a specific transfer as sender or receiver (users concerned only)
     @GetMapping(value = "/transfers/{transfer_id}")
     public Transfer getTransfer(@PathVariable final int transfer_id) {
-        transferService.findTransfer(transfer_id);
+        transferService.findTransferById(transfer_id);
         return null;
     }
 
