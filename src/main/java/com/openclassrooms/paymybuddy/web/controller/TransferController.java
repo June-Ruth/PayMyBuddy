@@ -27,7 +27,7 @@ public class TransferController {
 
     //TODO : create a transfer
     @PostMapping(value = "/transfers")
-    public Transfer createTransfer(@Valid @RequestBody final Transfer transfer) {
+    public ResponseEntity<Transfer> createTransfer(@Valid @RequestBody final Transfer transfer) {
 
         transferService.saveTransfer(transfer);
 
@@ -36,17 +36,16 @@ public class TransferController {
                 .path("/{transfer_id}")
                 .buildAndExpand(transfer.getId())
                 .toUri();
-        ResponseEntity.created(location).build();
 
-        return null;
+        return ResponseEntity.created(location).body(transfer);
     }
 
     //TODO : see les derniers transferts que j'ai effectué en tant que user en version simplifié(voir maquette)
     @GetMapping(value = "/transfers")
     public List<Transfer> getMyTransfersAsSender() {
         int user_id = 0;
-        transferService.findTransferBySender(user_id);
-        return null;
+        List<Transfer> transfers = transferService.findTransferBySender(user_id);
+        return transfers;
     }
 
     //TODO : see a specific transfer as sender or receiver (users concerned only)

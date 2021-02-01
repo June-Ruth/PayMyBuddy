@@ -47,7 +47,7 @@ public class AdminController {
     //TODO : see all transfer (ADMIN ONLY)
     @GetMapping(value = "/admin/transfers")
     public List<Transfer> getAllTransfers() {
-        transferService.findAllTransfers();
-        return null;
+        List<Transfer> transfers = transferService.findAllTransfers();
+        return transfers;
     }
 }

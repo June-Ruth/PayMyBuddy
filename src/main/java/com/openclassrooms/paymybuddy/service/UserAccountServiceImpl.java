@@ -1,5 +1,6 @@
 package com.openclassrooms.paymybuddy.service;
 
+import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.repository.UserAccountDAO;
 import org.apache.logging.log4j.LogManager;
@@ -69,5 +70,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public void saveDeleteConnectionInUserNetwork(int user_id, int connection_id) {
 
+    }
+
+    @Override
+    public List<Transfer> findUserTransfers(int id) {
+        return null;
     }
 }

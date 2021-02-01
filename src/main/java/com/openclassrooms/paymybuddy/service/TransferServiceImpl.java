@@ -46,4 +46,9 @@ public class TransferServiceImpl implements TransferService {
     public List<Transfer> findTransferBySender(int sender_id) {
         return null;
     }
+
+    @Override
+    public List<Transfer> findAllTransfers() {
+        return null;
+    }
 }
