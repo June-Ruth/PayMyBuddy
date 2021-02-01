@@ -1,5 +1,6 @@
 package com.openclassrooms.paymybuddy.service;
 
+import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.UserAccount;
 
 import java.util.List;
@@ -16,10 +17,12 @@ public interface UserAccountService {
 
     void deleteUserAccountById(int id);
 
-    List<UserAccount> findUserAccountNetwork(int id);
+    List<UserAccount> findUserNetwork(int id);
 
-    UserAccount saveNewConnectionInUserAccountNetwork(int user_id, String connection_email);
+    UserAccount saveNewConnectionInUserNetwork(int user_id, String connection_email);
 
-    void saveDeleteConnectionInUserAccountNetwork(int user_id, int connection_id);
+    void saveDeleteConnectionInUserNetwork(int user_id, int connection_id);
+
+    List<Transfer> findUserTransfers(int id);
 
 }

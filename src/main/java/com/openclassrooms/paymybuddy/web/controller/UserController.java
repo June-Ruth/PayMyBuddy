@@ -49,18 +49,6 @@ public class UserController {
         return result;
     }
 
-    //TODO ; read all user (ADMIN ONLY)
-    @GetMapping(value = "/users")
-    public List<UserInfoDTO> getAllUserAccounts() {
-        List<UserAccount> userAccounts = userAccountService.findAllUserAccounts();
-        List<UserInfoDTO> result = new ArrayList<>();
-        for (UserAccount userAccount : userAccounts) {
-            UserInfoDTO userDTO = DtoConverter.convertUserAccountToUserInfoDTO(userAccount);
-            result.add(userDTO);
-        }
-        return result;
-    }
-
     //TODO : read my own user information
     @GetMapping(value = "/users/{user_id}")
     public UserInfoDTO getUserAccountInfo(@PathVariable final int user_id) {
@@ -88,7 +76,7 @@ public class UserController {
     @GetMapping(value = "/users/{user_id}/connections")
     public List<UserRestrictedInfoDTO> getAllUserConnections(@PathVariable final int user_id) {
         List<UserRestrictedInfoDTO> result = new ArrayList<>();
-        List<UserAccount> userAccounts = userAccountService.findUserAccountNetwork(user_id);
+        List<UserAccount> userAccounts = userAccountService.findUserNetwork(user_id);
         for (UserAccount userAccount : userAccounts) {
             UserRestrictedInfoDTO userDTO = DtoConverter.convertUserAccountToUserRestrictedInfoDTO(userAccount);
             result.add(userDTO);
@@ -100,7 +88,7 @@ public class UserController {
     @PutMapping(value = "/users/{user_id}/connections")
     public List<UserRestrictedInfoDTO> updateToAddNewConnection(@PathVariable final int user_id,
                                                                 @RequestParam(name = "email") final String connection_email) {
-        UserAccount connection = userAccountService.saveNewConnectionInUserAccountNetwork(user_id, connection_email);
+        UserAccount connection = userAccountService.saveNewConnectionInUserNetwork(user_id, connection_email);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -118,7 +106,7 @@ public class UserController {
     @PutMapping(value = "/users/{user_id}/connections/{connection_id}")
     public List<UserRestrictedInfoDTO> updateToDeleteOldConnection(@PathVariable final int user_id,
                                                                    @PathVariable final int connection_id) {
-        userAccountService.saveDeleteConnectionInUserAccountNetwork(user_id, connection_id);
+        userAccountService.saveDeleteConnectionInUserNetwork(user_id, connection_id);
 
         List<UserRestrictedInfoDTO> network = new ArrayList<>(); //à compléter
         return network;
@@ -127,6 +115,9 @@ public class UserController {
     //TODO : read only my transferlog
     @GetMapping(value = "/users/{user_id}/transfers")
     public List<Transfer> getAllUserTransfers(@PathVariable final int user_id) {
+
+        userAccountService.findUserTransfers(user_id);
+
         return null;
     }
     // peut trier par date et paginer pour plus de facilité de lecture (voir cours API OC)

@@ -57,17 +57,17 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public List<UserAccount> findUserAccountNetwork(int id) {
+    public List<UserAccount> findUserNetwork(int id) {
         return null;
     }
 
     @Override
-    public UserAccount saveNewConnectionInUserAccountNetwork(int user_id, String connection_email) {
+    public UserAccount saveNewConnectionInUserNetwork(int user_id, String connection_email) {
         return null;
     }
 
     @Override
-    public void saveDeleteConnectionInUserAccountNetwork(int user_id, int connection_id) {
+    public void saveDeleteConnectionInUserNetwork(int user_id, int connection_id) {
 
     }
 }

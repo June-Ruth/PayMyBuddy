@@ -19,9 +19,21 @@ public class TransferControllerTest {
     private TransferService transferService;
 
     //TODO : test createTransfer
+    // - Rôle USER && USER.id = user_id && arguments valides
+    // - Rôle USER && USER.id = user_id && arguments invalides
+    // - Rôle ADMIN && USER.id ≠ user_id && arguments valides
+    // - Rôle USER && USER.id ≠ user_id && arguments valides
+
+    //TODO : test getMyTransfersAsSender
+    // - Rôle USER && USER.id = user_id
+    // - Rôle USER && USER.id = user_id
+    // - Rôle ADMIN && USER.id ≠ user_id
+    // - Rôle USER && USER.id ≠ user_id
 
     //TODO : test getTransfer
-
-    //TODO : test getAllTransfers
+    // - Rôle USER && USER.id = user_id && transfer_id existant dans DB
+    // - Rôle USER && USER.id = user_id && transfer_id inexistant dans DB
+    // - Rôle ADMIN && USER.id ≠ user_id && transfer_id existant dans DB
+    // - Rôle USER && USER.id ≠ user_id && transfer_id existant dans DB
 
 }

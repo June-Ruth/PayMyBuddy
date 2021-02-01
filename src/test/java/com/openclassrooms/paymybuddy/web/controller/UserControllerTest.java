@@ -19,38 +19,53 @@ public class UserControllerTest {
     private UserAccountService userAccountService;
 
     //TODO : Test createUserAccount
-    // - avec des arguments valides
-    // - avec une adresse mail déjà existante
-    // - avec des arguments invalides
-
-    //TODO : Test getAllUserAccounts
-    // - quand est ADMIN et ok
-    // - quand est ADMIN et nok
-    // - quand n'est pas admin
+    // - arguments valides && adresse mail inexistante dans DB
+    // - arguments valides && adresse mail existante dans DB
+    // - arguments invalides && adresse mail inexistante dans DB
 
     //TODO : Test getUserAccountInfo
-    // - quand id = l'id de l'utilisateur de la session
-    // - quand est ADMIN avec id de session différent de id
-    // - quand l'id n'existe pas et ne trouve pas le profil
-    // - quand il n'a pas les droits nécessaires (si n'est pas le user de la session ou admin)
+    // - Rôle USER && USER.id = user_id
+    // - Rôle ADMIN && USER.id ≠ user_id
+    // - Rôle USER && USER.id ≠ user_id
+    // - user_id inexistant dans DB
 
     //TODO : Test updateUserAccountInfo
-    // - quand id = id de l'utilisateur de la session et que les données sont valides
-    // - quand l'id n'existe pas et ne trouve pas le profil
-    // - quand les informations entrées ne sont pas valides
-    // - quand il n'a pas les droits nécessaire (si n'est pas le user de la session)
+    // - Rôle USER && USER.id = user_id && arguments valides
+    // - Rôle USER && USER.id = user_id && arguments invalides
+    // - Rôle ADMIN && USER.id ≠ user_id && arguments valides
+    // - Rôle USER && USER.id ≠ user_id && arguments valides
+    // - user_id inexistant dans DB && arguments valides
 
     //TODO : Test deleteUserAccount
-    // - quand id = id de l'utilisateur de la session
-    // - quand est admin
-    // - quand id n'existe pas
+    // - Rôle USER && USER.id = user_id
+    // - Rôle ADMIN && USER.id ≠ user_id
+    // - Rôle USER && USER.id ≠ user_id
+    // - user_id inexistant dans DB
 
     //TODO : test getAllUserConnections
+    // - Rôle USER && USER.id = user_id
+    // - Rôle ADMIN && USER.id ≠ user_id
+    // - Rôle USER && USER.id ≠ user_id
+    // - user_id inexistant dans DB
 
     //TODO : test updateToAddNewConnection
+    // - Rôle USER && USER.id = user_id && connection_id existant dans DB
+    // - Rôle USER && USER.id = user_id && connection_id inexistant dans DB
+    // - Rôle ADMIN && USER.id ≠ user_id && connection_id existant dans DB
+    // - Rôle USER && USER.id ≠ user_id && connection_id existant dans DB
+    // - user_id inexistant dans DB
 
     //TODO : test updateToDeleteOldConnection
+    // - Rôle USER && USER.id = user_id && connection_id existant dans network
+    // - Rôle USER && USER.id = user_id && connection_id inexistant dans network
+    // - Rôle ADMIN && USER.id ≠ user_id && connection_id existant dans network
+    // - Rôle USER && USER.id ≠ user_id && connection_id existant dans network
+    // - user_id inexistant dans DB
 
     //TODO : test getAllUserTransfers
+    // - Rôle USER && USER.id = user_id
+    // - Rôle ADMIN && USER.id ≠ user_id
+    // - Rôle USER && USER.id ≠ user_id
+    // - user_id inexistant dans DB
 
 }
