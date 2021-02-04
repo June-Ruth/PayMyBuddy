@@ -68,8 +68,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public void saveDeleteConnectionInUserNetwork(int user_id, int connection_id) {
-
+    public UserAccount saveDeleteConnectionInUserNetwork(int user_id, int connection_id) {
+        return null;
     }
 
     @Override

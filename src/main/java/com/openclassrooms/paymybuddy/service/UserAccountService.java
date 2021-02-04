@@ -21,7 +21,7 @@ public interface UserAccountService {
 
     UserAccount saveNewConnectionInUserNetwork(int user_id, String connection_email);
 
-    void saveDeleteConnectionInUserNetwork(int user_id, int connection_id);
+    UserAccount saveDeleteConnectionInUserNetwork(int user_id, int connection_id);
 
     List<Transfer> findUserTransfers(int id);
 

@@ -1,5 +1,6 @@
 package com.openclassrooms.paymybuddy.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.paymybuddy.model.BankAccount;
 import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.TransferType;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -57,7 +59,9 @@ class TransferControllerTest {
     void createTransferAsActualUserAndValidArgsTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id && arguments valides
         when(transferService.saveTransfer(any(Transfer.class))).thenReturn(transfer1);
-        mockMvc.perform(post("/transfers"))
+        mockMvc.perform(post("/transfers")
+                .content(new ObjectMapper().writeValueAsString(transfer1))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
 
@@ -65,7 +69,9 @@ class TransferControllerTest {
     @Test
     void createTransferAsActualUserAndInvalidArgsTest() throws Exception {
         // TODO :  Rôle USER && USER.id = user_id && arguments invalides
-        mockMvc.perform(post("/transfers"))
+        mockMvc.perform(post("/transfers")
+                .content(new ObjectMapper().writeValueAsString(transfer1))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
@@ -73,7 +79,9 @@ class TransferControllerTest {
     @Test
     void createTransferAsAdminAndValidArgsTest() throws Exception {
         // TODO : Rôle ADMIN && USER.id ≠ user_id && arguments valides
-        mockMvc.perform(post("/transfers"))
+        mockMvc.perform(post("/transfers")
+                .content(new ObjectMapper().writeValueAsString(transfer1))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
 
@@ -81,7 +89,9 @@ class TransferControllerTest {
     @Test
     void createTransferAsDifferentUserAndValidArgsTest() throws Exception {
         // TODO : Rôle USER && USER.id ≠ user_id && arguments valides
-        mockMvc.perform(post("/transfers"))
+        mockMvc.perform(post("/transfers")
+                .content(new ObjectMapper().writeValueAsString(transfer1))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
 
@@ -92,7 +102,6 @@ class TransferControllerTest {
         when(transferService.findTransferBySender(any(Integer.class))).thenReturn(transfers);
         mockMvc.perform(get("/transfers"))
                 .andExpect(status().isOk());
-
     }
 
     @Disabled

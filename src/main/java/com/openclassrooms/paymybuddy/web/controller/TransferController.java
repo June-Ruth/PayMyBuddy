@@ -27,7 +27,7 @@ public class TransferController {
 
     //TODO : create a transfer
     @PostMapping(value = "/transfers")
-    public ResponseEntity<Transfer> createTransfer(@Valid @RequestBody final Transfer transfer) {
+    public ResponseEntity<String> createTransfer(@Valid @RequestBody final Transfer transfer) {
 
         transferService.saveTransfer(transfer);
 
@@ -37,7 +37,7 @@ public class TransferController {
                 .buildAndExpand(transfer.getId())
                 .toUri();
 
-        return ResponseEntity.created(location).body(transfer);
+        return ResponseEntity.created(location).body(transfer.toString());
     }
 
     //TODO : see les derniers transferts que j'ai effectué en tant que user en version simplifié(voir maquette)
