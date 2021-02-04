@@ -38,6 +38,11 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
+    public boolean findIfUserAccountExistsByEmail(String email) {
+        return false;
+    }
+
+    @Override
     public List<UserAccount> findAllUserAccounts() {
         return null;
     }
@@ -53,8 +58,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public void deleteUserAccountById(int id) {
-
+    public boolean deleteUserAccountById(int id) {
+        return false;
     }
 
     @Override
@@ -74,6 +79,11 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public List<Transfer> findUserTransfers(int id) {
+        return null;
+    }
+
+    @Override
+    public UserAccount findConnectionById(int id) {
         return null;
     }
 }

@@ -9,11 +9,12 @@ import com.openclassrooms.paymybuddy.util.DtoConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+@RestController
 public class AdminController {
     /**
      * @see Logger
@@ -25,7 +26,6 @@ public class AdminController {
 
     public AdminController(final UserAccountService pUserAccountService,
                            final TransferService pTransferService) {
-        Objects.requireNonNull(pUserAccountService);
         userAccountService = pUserAccountService;
         transferService = pTransferService;
     }

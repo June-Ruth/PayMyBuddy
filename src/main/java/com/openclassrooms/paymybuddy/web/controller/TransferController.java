@@ -26,7 +26,7 @@ public class TransferController {
     }
 
     //TODO : create a transfer
-    @PostMapping(value = "/transfers")
+    @PostMapping(value = "/transfers", consumes = {"application/json"})
     public ResponseEntity<String> createTransfer(@Valid @RequestBody final Transfer transfer) {
 
         transferService.saveTransfer(transfer);
@@ -40,7 +40,7 @@ public class TransferController {
         return ResponseEntity.created(location).body(transfer.toString());
     }
 
-    //TODO : see les derniers transferts que j'ai effectué en tant que user en version simplifié(voir maquette)
+    //TODO : see les derniers transferts que j'ai effectué en tant que user en version simplifié (voir maquette)
     @GetMapping(value = "/transfers")
     public List<Transfer> getMyTransfersAsSender() {
         int user_id = 0;
@@ -50,9 +50,12 @@ public class TransferController {
 
     //TODO : see a specific transfer as sender or receiver (users concerned only)
     @GetMapping(value = "/transfers/{transfer_id}")
-    public Transfer getTransfer(@PathVariable final int transfer_id) {
-        transferService.findTransferById(transfer_id);
-        return null;
+    public ResponseEntity<String> getTransfer(@PathVariable final int transfer_id) {
+        Transfer transfer = transferService.findTransferById(transfer_id);
+        if (transfer != null) {
+            return ResponseEntity.ok().body(transfer.toString());
+        }
+        return ResponseEntity.notFound().build();
     }
 
 }

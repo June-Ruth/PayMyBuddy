@@ -39,6 +39,8 @@ class TransferControllerTest {
 
     private static Transfer transfer1;
     private static Transfer transfer2;
+    private static UserAccount userAccount1;
+    private static UserAccount userAccount2;
 
     private static List<Transfer> transfers = new ArrayList<>();
 
@@ -46,16 +48,14 @@ class TransferControllerTest {
     static void beforeAll() {
         BankAccount bankAccount1 = new BankAccount(123, "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount(456, "bank2", "iban2", "bic2");
-        UserAccount userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", bankAccount1, 0, null, null);
-        UserAccount userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com",  "password2", bankAccount2, 0, null, null);
+        userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", bankAccount1, 0, null, null);
+        userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com",  "password2", bankAccount2, 0, null, null);
         transfer1 = new Transfer(userAccount1, userAccount2, "description1", LocalDate.of(2020, 1, 1), 100, 1, TransferType.TRANSFER_BETWEEN_USER);
         transfer2 = new Transfer(userAccount1, userAccount1, "description2", LocalDate.of(2020, 2, 2), 100, 0, TransferType.TRANFER_WITH_BANK);
         transfers.add(transfer1);
         transfers.add(transfer2);
     }
 
-    //TODO FIRST
-    @Disabled
     @Test
     void createTransferAsActualUserAndValidArgsTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id && arguments valides
@@ -66,13 +66,12 @@ class TransferControllerTest {
                 .andExpect(status().isCreated());
     }
 
-    //TODO FIRST
-    @Disabled
     @Test
     void createTransferAsActualUserAndInvalidArgsTest() throws Exception {
+        Transfer invalidTransfer = new Transfer(userAccount1, userAccount1, null, null, 0, 0, TransferType.TRANFER_WITH_BANK);
         // TODO :  Rôle USER && USER.id = user_id && arguments invalides
         mockMvc.perform(post("/transfers")
-                .content(new ObjectMapper().writeValueAsString(transfer1))
+                .content(new ObjectMapper().writeValueAsString(invalidTransfer))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
@@ -97,9 +96,6 @@ class TransferControllerTest {
                 .andExpect(status().isForbidden());
     }
 
-
-    //TODO FIRST
-    @Disabled
     @Test
     void getMyTransfersAsSenderAsActualUserTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id
@@ -124,26 +120,22 @@ class TransferControllerTest {
                 .andExpect(status().isForbidden());
     }
 
-
-    //TODO FIRST
-    @Disabled
     @Test
     void getTransferAsActualUserAndTransferExistsTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id (sender or receiver) && transfer_id existant dans DB
         int transfer_id = 0;
+        when(transferService.findTransferById(any(Integer.class))).thenReturn(transfer1);
         mockMvc.perform(get("/transfers/{transfer_id}", transfer_id))
                 .andExpect(status().isOk());
     }
 
-    //TODO FIRST
-    @Disabled
     @Test
     void getTransferAsActualUserAndTransferNotExistsTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id (sender or receiver) && transfer_id inexistant dans DB
         int transfer_id = 0;
+        when(transferService.findTransferById(any(Integer.class))).thenReturn(null);
         mockMvc.perform(get("/transfers/{transfer_id}", transfer_id))
                 .andExpect(status().isNotFound());
-
     }
 
     @Disabled

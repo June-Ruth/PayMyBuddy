@@ -9,13 +9,15 @@ public interface UserAccountService {
 
     UserAccount findUserAccountById(int id);
 
+    boolean findIfUserAccountExistsByEmail(String email);
+
     List<UserAccount> findAllUserAccounts();
 
     UserAccount saveUserAccount(UserAccount userAccount);
 
     UserAccount updateUserAccount(UserAccount userAccount);
 
-    void deleteUserAccountById(int id);
+    boolean deleteUserAccountById(int id);
 
     List<UserAccount> findUserNetwork(int id);
 
@@ -25,4 +27,5 @@ public interface UserAccountService {
 
     List<Transfer> findUserTransfers(int id);
 
+    UserAccount findConnectionById(int id);
 }

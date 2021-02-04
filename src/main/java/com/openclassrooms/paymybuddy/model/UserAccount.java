@@ -1,9 +1,11 @@
 package com.openclassrooms.paymybuddy.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * User account used for application.
@@ -78,14 +80,15 @@ public class UserAccount {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "connection_id", referencedColumnName = "user_id"))
-    private Set<UserAccount> connection;
+    private List<UserAccount> connection;
 
     /**
      * Historic log off all transfer send and receive.
      * @see Transfer
      */
+    @JsonBackReference
     @OneToMany(targetEntity = Transfer.class, mappedBy = "sender")
-    private Set<Transfer> transferLog;
+    private List<Transfer> transferLog;
 
     /**
      * Public constructor.
@@ -105,8 +108,8 @@ public class UserAccount {
                        final String pPassword,
                        final BankAccount pBankAccount,
                        final double pBalance,
-                       final Set<UserAccount> pConnection,
-                       final Set<Transfer> pTransferLog) {
+                       final List<UserAccount> pConnection,
+                       final List<Transfer> pTransferLog) {
         firstName = pFirstName;
         lastName = pLastName;
         email = pEmail;
@@ -234,7 +237,7 @@ public class UserAccount {
      * Getter connection.
      * @return connection as Set of user account
      */
-    public Set<UserAccount> getConnection() {
+    public List<UserAccount> getConnection() {
         return connection;
     }
 
@@ -242,7 +245,7 @@ public class UserAccount {
      * Setter connection.
      * @param pConnection as Set of user account to set
      */
-    public void setConnection(final Set<UserAccount> pConnection) {
+    public void setConnection(final List<UserAccount> pConnection) {
         connection = pConnection;
     }
 
@@ -250,7 +253,7 @@ public class UserAccount {
      * Getter transfer log.
      * @return transfer log as Set of transfer.
      */
-    public Set<Transfer> getTransferLog() {
+    public List<Transfer> getTransferLog() {
         return transferLog;
     }
 
@@ -258,7 +261,7 @@ public class UserAccount {
      * Setter transfer log.
      * @param pTransferLog as Set pf transfer to set
      */
-    public void setTransferLog(final Set<Transfer> pTransferLog) {
+    public void setTransferLog(final List<Transfer> pTransferLog) {
         transferLog = pTransferLog;
     }
 }
