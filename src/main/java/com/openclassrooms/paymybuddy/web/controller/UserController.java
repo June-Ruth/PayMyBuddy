@@ -9,7 +9,6 @@ import com.openclassrooms.paymybuddy.service.UserAccountService;
 import com.openclassrooms.paymybuddy.util.DtoConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -133,7 +132,7 @@ public class UserController {
     public ResponseEntity<String> updateToDeleteOldConnection(@PathVariable final int user_id,
                                                               @PathVariable final int connection_id) {
         boolean user_exists = userAccountService.findUserAccountById(user_id) != null;
-        boolean connection_exists = userAccountService.findConnectionById(connection_id) != null;
+        boolean connection_exists = userAccountService.existsConnectionById(connection_id);
         if (user_exists && connection_exists) {
             userAccountService.saveDeleteConnectionInUserNetwork(user_id, connection_id);
 

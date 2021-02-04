@@ -34,56 +34,69 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccount findUserAccountById(int id) {
-        return null;
+        return userAccountDAO.findById(id);
     }
 
     @Override
     public boolean findIfUserAccountExistsByEmail(String email) {
-        return false;
+        return userAccountDAO.existsByEmail(email);
     }
 
     @Override
     public List<UserAccount> findAllUserAccounts() {
-        return null;
+        return userAccountDAO.findAll();
     }
 
     @Override
     public UserAccount saveUserAccount(UserAccount userAccount) {
-        return null;
+        return userAccountDAO.save(userAccount);
     }
 
     @Override
     public UserAccount updateUserAccount(UserAccount userAccount) {
-        return null;
+        return userAccountDAO.save(userAccount);
     }
 
     @Override
     public boolean deleteUserAccountById(int id) {
-        return false;
+        return userAccountDAO.deleteById(id);
     }
 
     @Override
     public List<UserAccount> findUserNetwork(int id) {
-        return null;
+        UserAccount userAccount = userAccountDAO.findById(id);
+        return userAccount.getConnection();
     }
 
     @Override
     public UserAccount saveNewConnectionInUserNetwork(int user_id, String connection_email) {
-        return null;
+        UserAccount userAccount = userAccountDAO.findById(user_id);
+        UserAccount connection = userAccountDAO.findByEmail(connection_email);
+        List<UserAccount> connections = userAccount.getConnection();
+        connections.add(connection);
+        userAccountDAO.save(userAccount);
+        return connection;
     }
 
     @Override
     public UserAccount saveDeleteConnectionInUserNetwork(int user_id, int connection_id) {
-        return null;
+        UserAccount userAccount = userAccountDAO.findById(user_id);
+        UserAccount connection = userAccountDAO.findById(connection_id);
+        List<UserAccount> connections = userAccount.getConnection();
+        connections.remove(connection);
+        UserAccount newUserAccount = userAccountDAO.save(userAccount);
+        return newUserAccount;
     }
 
     @Override
     public List<Transfer> findUserTransfers(int id) {
-        return null;
+        UserAccount userAccount = userAccountDAO.findById(id);
+        List<Transfer> transfers = userAccount.getTransferLog();
+        return transfers;
     }
 
     @Override
-    public UserAccount findConnectionById(int id) {
-        return null;
+    public boolean existsConnectionById(int id) {
+        return userAccountDAO.existsById(id);
     }
 }

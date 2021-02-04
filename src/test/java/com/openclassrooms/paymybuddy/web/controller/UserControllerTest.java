@@ -319,7 +319,7 @@ class UserControllerTest {
         int user_id = 0;
         int connection_id = 1;
         when(userAccountService.findUserAccountById(any(Integer.class))).thenReturn(userAccount1);
-        when(userAccountService.findConnectionById(any(Integer.class))).thenReturn(userAccount2);
+        when(userAccountService.existsConnectionById(any(Integer.class))).thenReturn(true);
         when(userAccountService.saveDeleteConnectionInUserNetwork(any(Integer.class), any(Integer.class))).thenReturn(userAccount1);
         mockMvc.perform(put("/users/{user_id}/connections/{connection_id}", user_id, connection_id))
                 .andExpect(status().isOk());
@@ -331,7 +331,7 @@ class UserControllerTest {
         int user_id = 0;
         int connection_id = 1;
         when(userAccountService.findUserAccountById(any(Integer.class))).thenReturn(userAccount1);
-        when(userAccountService.findConnectionById(any(Integer.class))).thenReturn(null);
+        when(userAccountService.existsConnectionById(any(Integer.class))).thenReturn(false);
         mockMvc.perform(put("/users/{user_id}/connections/{connection_id}", user_id, connection_id))
                 .andExpect(status().isNotFound());
     }
@@ -362,7 +362,7 @@ class UserControllerTest {
         int user_id = 0;
         int connection_id = 1;
         when(userAccountService.findUserAccountById(any(Integer.class))).thenReturn(null);
-        when(userAccountService.findConnectionById(any(Integer.class))).thenReturn(userAccount2);
+        when(userAccountService.existsConnectionById(any(Integer.class))).thenReturn(true);
         mockMvc.perform(put("/users/{user_id}/connections/{connection_id}", user_id, connection_id))
                 .andExpect(status().isNotFound());
     }

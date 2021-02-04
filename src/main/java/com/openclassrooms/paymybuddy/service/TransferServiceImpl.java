@@ -1,6 +1,7 @@
 package com.openclassrooms.paymybuddy.service;
 
 import com.openclassrooms.paymybuddy.model.Transfer;
+import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.repository.TransferDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-//TODO : @Transactionnal : permet le rollback
+//TODO : @Transactionnal : permet le rollback + test rollback et commit
 public class TransferServiceImpl implements TransferService {
     /**
      * @see Logger
@@ -34,21 +35,21 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public Transfer saveTransfer(Transfer transfer) {
-        return null;
+        return transferDAO.save(transfer);
     }
 
     @Override
     public Transfer findTransferById(int transfer_id) {
-        return null;
+        return transferDAO.findById(transfer_id);
     }
 
     @Override
-    public List<Transfer> findTransferBySender(int sender_id) {
-        return null;
+    public List<Transfer> findTransferBySender(UserAccount sender) {
+        return transferDAO.findAllBySender(sender);
     }
 
     @Override
     public List<Transfer> findAllTransfers() {
-        return null;
+        return transferDAO.findAll();
     }
 }

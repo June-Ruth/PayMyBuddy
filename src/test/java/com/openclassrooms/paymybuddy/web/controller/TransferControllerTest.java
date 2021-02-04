@@ -6,6 +6,7 @@ import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.TransferType;
 import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.service.TransferService;
+import com.openclassrooms.paymybuddy.service.UserAccountService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -36,6 +38,9 @@ class TransferControllerTest {
 
     @MockBean
     private TransferService transferService;
+
+    @MockBean
+    private UserAccountService userAccountService;
 
     private static Transfer transfer1;
     private static Transfer transfer2;
@@ -99,7 +104,8 @@ class TransferControllerTest {
     @Test
     void getMyTransfersAsSenderAsActualUserTest() throws Exception {
         // TODO : Rôle USER && USER.id = user_id
-        when(transferService.findTransferBySender(any(Integer.class))).thenReturn(transfers);
+        when(userAccountService.findUserAccountById(anyInt())).thenReturn(userAccount1);
+        when(transferService.findTransferBySender(any(UserAccount.class))).thenReturn(transfers);
         mockMvc.perform(get("/transfers"))
                 .andExpect(status().isOk());
     }

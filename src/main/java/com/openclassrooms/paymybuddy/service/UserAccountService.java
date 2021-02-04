@@ -27,5 +27,5 @@ public interface UserAccountService {
 
     List<Transfer> findUserTransfers(int id);
 
-    UserAccount findConnectionById(int id);
+    boolean existsConnectionById(int id);
 }

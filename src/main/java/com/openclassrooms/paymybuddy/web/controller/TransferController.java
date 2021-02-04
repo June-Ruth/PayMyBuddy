@@ -1,7 +1,9 @@
 package com.openclassrooms.paymybuddy.web.controller;
 
 import com.openclassrooms.paymybuddy.model.Transfer;
+import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.service.TransferService;
+import com.openclassrooms.paymybuddy.service.UserAccountService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +22,12 @@ public class TransferController {
     private static final Logger LOGGER = LogManager.getLogger(TransferController.class);
 
     private TransferService transferService;
+    private UserAccountService userAccountService;
 
-    public TransferController(final TransferService pTransferService){
+    public TransferController(final TransferService pTransferService,
+                              final UserAccountService pUserAccountService){
         transferService = pTransferService;
+        userAccountService = pUserAccountService;
     }
 
     //TODO : create a transfer
@@ -44,7 +49,8 @@ public class TransferController {
     @GetMapping(value = "/transfers")
     public List<Transfer> getMyTransfersAsSender() {
         int user_id = 0;
-        List<Transfer> transfers = transferService.findTransferBySender(user_id);
+        UserAccount userAccount = userAccountService.findUserAccountById(user_id);
+        List<Transfer> transfers = transferService.findTransferBySender(userAccount);
         return transfers;
     }
 
