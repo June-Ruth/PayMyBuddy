@@ -54,6 +54,7 @@ class TransferControllerTest {
         transfers.add(transfer2);
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void createTransferAsActualUserAndValidArgsTest() throws Exception {
@@ -65,6 +66,7 @@ class TransferControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void createTransferAsActualUserAndInvalidArgsTest() throws Exception {
@@ -95,6 +97,8 @@ class TransferControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+
+    //TODO FIRST
     @Disabled
     @Test
     void getMyTransfersAsSenderAsActualUserTest() throws Exception {
@@ -120,6 +124,8 @@ class TransferControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+
+    //TODO FIRST
     @Disabled
     @Test
     void getTransferAsActualUserAndTransferExistsTest() throws Exception {
@@ -129,6 +135,7 @@ class TransferControllerTest {
                 .andExpect(status().isOk());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getTransferAsActualUserAndTransferNotExistsTest() throws Exception {

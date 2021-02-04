@@ -55,6 +55,7 @@ class AdminControllerTest {
         transfers.add(transfer2);
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllUserAccountsAsAdminTest() throws Exception {
@@ -72,6 +73,7 @@ class AdminControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllTransfersAsAdminTest() throws Exception {

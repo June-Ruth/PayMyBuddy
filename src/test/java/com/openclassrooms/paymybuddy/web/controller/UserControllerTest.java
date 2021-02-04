@@ -23,6 +23,7 @@ class UserControllerTest {
     @MockBean
     private UserAccountService userAccountService;
 
+    //TODO FIRST
     @Disabled
     @Test
     void createAccountWithValidArgsAndEmailNotExistsTest() throws Exception {
@@ -31,6 +32,7 @@ class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void createAccountWithValidArgsAndEmailExistsTest() throws Exception {
@@ -39,6 +41,7 @@ class UserControllerTest {
                 .andExpect(status().isConflict());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void createAccountWithInvalidArgsAndEmailNotExistsTest() throws Exception {
@@ -47,6 +50,7 @@ class UserControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getUserAccountInfoAsActualUserTest() throws Exception {
@@ -74,6 +78,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getUserAccountInfoAsNotExistsUserTest() throws Exception {
@@ -83,6 +88,7 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateUserAccountInfoAsActualUserAndValidArgsTest() throws Exception {
@@ -92,6 +98,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateUserAccountInfoAsActualUserAndInvalidArgsTest() throws Exception {
@@ -119,15 +126,17 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateUserAccountInfoAsNotExistsUserAndValidArgsTest() throws Exception {
         // TODO : user_id inexistant dans DB && arguments valides
         int user_id = 0;
         mockMvc.perform(put("/users/{user_id}", user_id))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void deleteUserAccountAsActualUserTest() throws Exception {
@@ -155,6 +164,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void deleteUserAccountAsNotExistsUserTest() throws Exception {
@@ -164,6 +174,7 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllUserConnectionsAsActualUserTest() throws Exception {
@@ -191,6 +202,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllUserConnectionsAsNotExistsUserTest() throws Exception {
@@ -200,6 +212,7 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToAddNewConnectionAsActualUserAndConnectionExistsTest() throws Exception {
@@ -210,6 +223,7 @@ class UserControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToAddNewConnectionAsActualUserAndConnectionNotExistsTest() throws Exception {
@@ -240,6 +254,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToAddNewConnectionAsNotExistsUserAndConnectionExistsTest() throws Exception {
@@ -250,6 +265,7 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToDeleteOldConnectionExistsAsActualUserTest() throws Exception {
@@ -260,6 +276,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToDeleteOldConnectionNotExistsAsActualUserTest() throws Exception {
@@ -290,6 +307,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void updateToDeleteOldConnectionExistsAsNotExistsUserTest() throws Exception {
@@ -297,9 +315,10 @@ class UserControllerTest {
         int user_id = 0;
         int connection_id = 1;
         mockMvc.perform(put("/user/{user_id}/connections/{connection_id}", user_id, connection_id))
-                .andExpect(status().isOk());
+                .andExpect(status().isNotFound());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllUserTransfersAsActualUser() throws Exception {
@@ -327,6 +346,7 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    //TODO FIRST
     @Disabled
     @Test
     void getAllUserTransfersAsNotExistsUser() throws Exception {
