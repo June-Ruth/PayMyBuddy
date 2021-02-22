@@ -108,6 +108,7 @@ public class UserAccount {
      * @param pLastName .
      * @param pEmail .
      * @param pPassword .
+     * @param pRoles .
      * @param pBankAccount .
      * @param pBalance .
      * @param pConnection .
@@ -117,6 +118,7 @@ public class UserAccount {
                        final String pLastName,
                        final String pEmail,
                        final String pPassword,
+                       final List<RoleProfile> pRoles,
                        final BankAccount pBankAccount,
                        final double pBalance,
                        final List<UserAccount> pConnection,
@@ -125,6 +127,7 @@ public class UserAccount {
         lastName = pLastName;
         email = pEmail;
         password = pPassword;
+        roles = pRoles;
         bankAccount = pBankAccount;
         balance = pBalance;
         connection = pConnection;

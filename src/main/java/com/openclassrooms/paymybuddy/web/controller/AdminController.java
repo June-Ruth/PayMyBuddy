@@ -50,4 +50,7 @@ public class AdminController {
         List<Transfer> transfers = transferService.findAllTransfers();
         return transfers;
     }
+
+    //TODO : designed an user as admin
+
 }

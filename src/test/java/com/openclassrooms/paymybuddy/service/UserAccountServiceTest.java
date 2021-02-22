@@ -1,9 +1,6 @@
 package com.openclassrooms.paymybuddy.service;
 
-import com.openclassrooms.paymybuddy.model.BankAccount;
-import com.openclassrooms.paymybuddy.model.Transfer;
-import com.openclassrooms.paymybuddy.model.TransferType;
-import com.openclassrooms.paymybuddy.model.UserAccount;
+import com.openclassrooms.paymybuddy.model.*;
 import com.openclassrooms.paymybuddy.repository.UserAccountDAO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,10 +37,12 @@ public class UserAccountServiceTest {
 
     @BeforeAll
     static void beforeAll() {
+        List<RoleProfile> userRole = new ArrayList<>();
+        userRole.add(new RoleProfile(RoleType.ROLE_USER));
         bankAccount1 = new BankAccount(123, "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount(456, "bank2", "iban2", "bic2");
-        userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", bankAccount1, 0, network, transfers);
-        userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com", "password2", bankAccount2, 0, null, null);
+        userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, network, transfers);
+        userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com", "password2", userRole, bankAccount2, 0, null, null);
         transfer1 = new Transfer(userAccount1, userAccount2, "description1", LocalDate.of(2020, 1, 1), 100, 1, TransferType.TRANSFER_BETWEEN_USER);
         transfer2 = new Transfer(userAccount1, userAccount1, "description2", LocalDate.of(2020, 2, 2), 100, 0, TransferType.TRANFER_WITH_BANK);
         transfers.add(transfer1);
@@ -118,7 +117,9 @@ public class UserAccountServiceTest {
     @Test
     void saveDeleteConnectionInUserNetworkTest() {
         List<UserAccount> connections = new ArrayList<>();
-        UserAccount userAccount3 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", bankAccount1, 0, connections, null);
+        List<RoleProfile> userRole = new ArrayList<>();
+        userRole.add(new RoleProfile(RoleType.ROLE_USER));
+        UserAccount userAccount3 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, connections, null);
         connections.add(userAccount2);
         when(userAccountDAO.findById(anyInt())).thenReturn(userAccount3).thenReturn(userAccount2);
         when(userAccountDAO.save(any(UserAccount.class))).thenReturn(userAccount3);

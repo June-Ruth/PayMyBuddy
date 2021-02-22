@@ -10,6 +10,7 @@ import com.openclassrooms.paymybuddy.util.DtoConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,16 +28,20 @@ public class UserController {
     private static final Logger LOGGER = LogManager.getLogger(UserController.class);
 
     private UserAccountService userAccountService;
+    private PasswordEncoder passwordEncoder;
 
-    public UserController(final UserAccountService pUserAccountService) {
+    public UserController(final UserAccountService pUserAccountService,
+                          final PasswordEncoder pPasswordEncoder) {
         Objects.requireNonNull(pUserAccountService);
         userAccountService = pUserAccountService;
+        passwordEncoder = pPasswordEncoder;
     }
 
     //TODO : create user account (and bank account => ok avec Cascade)
     @PostMapping(value = "/users")
     public ResponseEntity<String> createUserAccount(@Valid @RequestBody final UserInfoWithoutBalanceDTO userInfoWithoutBalanceDTO) {
         UserAccount userAccount = DtoConverter.convertUserInfoWithoutBalanceDTOtoUserAccount(userInfoWithoutBalanceDTO);
+        userAccount.setPassword(passwordEncoder.encode(userInfoWithoutBalanceDTO.getPassword()));
         userAccountService.saveUserAccount(userAccount);
 
         URI location = ServletUriComponentsBuilder
@@ -67,6 +72,7 @@ public class UserController {
         boolean exists = userAccountService.findUserAccountById(user_id) != null ;
         if (exists) {
             UserAccount userAccount = DtoConverter.convertUserInfoWithoutBalanceDTOtoUserAccount(userInfoDTO); //voir si pas nécessaire de différencier un existant d'un new
+            userAccount.setPassword(passwordEncoder.encode(userInfoDTO.getPassword()));
             userAccountService.updateUserAccount(userAccount);
             return ResponseEntity.ok().body(userAccount.toString());
         } else {

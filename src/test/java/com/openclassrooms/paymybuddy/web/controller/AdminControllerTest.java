@@ -1,9 +1,6 @@
 package com.openclassrooms.paymybuddy.web.controller;
 
-import com.openclassrooms.paymybuddy.model.BankAccount;
-import com.openclassrooms.paymybuddy.model.Transfer;
-import com.openclassrooms.paymybuddy.model.TransferType;
-import com.openclassrooms.paymybuddy.model.UserAccount;
+import com.openclassrooms.paymybuddy.model.*;
 import com.openclassrooms.paymybuddy.service.TransferService;
 import com.openclassrooms.paymybuddy.service.UserAccountService;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,10 +40,12 @@ class AdminControllerTest {
 
     @BeforeAll
     static void beforeAll() {
+        List<RoleProfile> userRole = new ArrayList<>();
+        userRole.add(new RoleProfile(RoleType.ROLE_USER));
         BankAccount bankAccount1 = new BankAccount(123, "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount(456, "bank2", "iban2", "bic2");
-        UserAccount userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", bankAccount1, 0, null, null);
-        UserAccount userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com",  "password2", bankAccount2, 0, null, null);
+        UserAccount userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);
+        UserAccount userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com",  "password2", userRole, bankAccount2, 0, null, null);
         userAccounts.add(userAccount1);
         userAccounts.add(userAccount2);
         Transfer transfer1 = new Transfer(userAccount1, userAccount2, "description1", LocalDate.of(2020, 1, 1), 100, 1, TransferType.TRANSFER_BETWEEN_USER);

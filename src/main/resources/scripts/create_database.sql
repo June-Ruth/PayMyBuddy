@@ -21,7 +21,7 @@ CREATE TABLE pay_my_buddy.user_account (
 
 CREATE TABLE pay_my_buddy.role_profile (
     role_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    role_name VARCHAR(10) NOT NULL UNIQUE,
+    role_name VARCHAR(15) NOT NULL UNIQUE,
     PRIMARY KEY (role_id)
 ) ENGINE = InnoDB;
 
@@ -31,7 +31,7 @@ CREATE TABLE pay_my_buddy.transfer(
     receiver_user_id BIGINT UNSIGNED NOT NULL,
     description VARCHAR(60) NOT NULL,
     transfer_date DATE NOT NULL,
-    amount DECIMAL(6,2) UNSIG NED NOT NULL,
+    amount DECIMAL(6,2) UNSIGNED NOT NULL,
     fee DECIMAL(4,2) UNSIGNED NOT NULL,
     transfer_type VARCHAR(40) NOT NULL,
     PRIMARY KEY (transfer_id)
@@ -116,3 +116,6 @@ ALTER TABLE pay_my_buddy.user_role
             REFERENCES role_profile(role_id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION;
+
+INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (1, 'ROLE_USER');
+INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (2, 'ROLE_ADMIN');

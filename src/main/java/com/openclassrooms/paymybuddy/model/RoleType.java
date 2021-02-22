@@ -4,9 +4,9 @@ public enum RoleType {
     /**
      * User role.
      */
-    USER,
+    ROLE_USER,
     /**
      * Admin role.
      */
-    ADMIN
+    ROLE_ADMIN
 }

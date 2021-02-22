@@ -1,7 +1,6 @@
 package com.openclassrooms.paymybuddy.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "role_profile")
@@ -23,9 +22,35 @@ public class RoleProfile {
     private RoleType name;
 
     /**
-     * List of all user account which benefits of this role.
-     * @see UserAccount
+     * Public constructor.
+     * @param name .
      */
-    @ManyToMany(mappedBy = "roles")
-    private List<UserAccount> users;
+    public RoleProfile(RoleType name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter ID.
+     * @return ID
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Setter ID.
+     * ID is auto-generated, should not be accessible.
+     * @param pId to set
+     */
+    private void setId(final int pId) {
+        id = pId;
+    }
+
+    public RoleType getName() {
+        return name;
+    }
+
+    public void setName(RoleType pName) {
+        name = pName;
+    }
 }

@@ -1,5 +1,6 @@
 package com.openclassrooms.paymybuddy.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,6 +31,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf(); // laisser activer si utilise une authentification basée sur les sessions et cookies. Si utilise une authentification stateless comme JWT, alors csrf().disabled;
     }
 
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
