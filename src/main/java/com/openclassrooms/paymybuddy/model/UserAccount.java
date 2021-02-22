@@ -216,6 +216,22 @@ public class UserAccount {
     }
 
     /**
+     * Getter roles.
+     * @return list of roleProfile
+     */
+    public List<RoleProfile> getRoles() {
+        return roles;
+    }
+
+    /**
+     * Setter roles.
+     * @param pRoles to set
+     */
+    public void setRoles(List<RoleProfile> pRoles) {
+        roles = pRoles;
+    }
+
+    /**
      * Getter Bank Account.
      * @return bank account
      */

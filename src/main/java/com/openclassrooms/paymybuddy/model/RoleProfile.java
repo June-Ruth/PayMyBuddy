@@ -10,22 +10,21 @@ public class RoleProfile {
      * Use as primary key in DataBase.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
     private int id;
 
     /**
-     * Role name defined by RoleType enum.
-     * @see RoleType
+     * Role name defined.
      */
     @Column(name = "role_name")
-    private RoleType name;
+    private String name;
 
     /**
      * Public constructor.
      * @param name .
      */
-    public RoleProfile(RoleType name) {
+    public RoleProfile(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -46,11 +45,11 @@ public class RoleProfile {
         id = pId;
     }
 
-    public RoleType getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(RoleType pName) {
+    public void setName(String pName) {
         name = pName;
     }
 }

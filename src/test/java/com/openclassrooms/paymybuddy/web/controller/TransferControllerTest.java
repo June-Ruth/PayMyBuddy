@@ -49,7 +49,7 @@ class TransferControllerTest {
     @BeforeAll
     static void beforeAll() {
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(RoleType.ROLE_USER));
+        userRole.add(new RoleProfile(1, "USER"));
         BankAccount bankAccount1 = new BankAccount(123, "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount(456, "bank2", "iban2", "bic2");
         userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);
@@ -72,7 +72,7 @@ class TransferControllerTest {
 
     @Test
     void createTransferAsActualUserAndInvalidArgsTest() throws Exception {
-        Transfer invalidTransfer = new Transfer(userAccount1, userAccount1, null, null, 0, 0, TransferType.TRANFER_WITH_BANK);
+        Transfer invalidTransfer = new Transfer(userAccount1, userAccount2, null, null, 0, 0, TransferType.TRANFER_WITH_BANK);
         // TODO :  Rôle USER && USER.id = user_id && arguments invalides
         mockMvc.perform(post("/transfers")
                 .content(new ObjectMapper().writeValueAsString(invalidTransfer))

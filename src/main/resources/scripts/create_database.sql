@@ -117,5 +117,5 @@ ALTER TABLE pay_my_buddy.user_role
             ON DELETE NO ACTION
             ON UPDATE NO ACTION;
 
-INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (1, 'ROLE_USER');
-INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (2, 'ROLE_ADMIN');
+INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (1, 'USER');
+INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (2, 'ADMIN');

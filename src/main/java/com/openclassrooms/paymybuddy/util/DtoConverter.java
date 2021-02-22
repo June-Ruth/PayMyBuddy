@@ -1,7 +1,6 @@
 package com.openclassrooms.paymybuddy.util;
 
 import com.openclassrooms.paymybuddy.model.RoleProfile;
-import com.openclassrooms.paymybuddy.model.RoleType;
 import com.openclassrooms.paymybuddy.model.Transfer;
 import com.openclassrooms.paymybuddy.model.UserAccount;
 import com.openclassrooms.paymybuddy.model.dto.UserInfoDTO;
@@ -57,7 +56,7 @@ public final class DtoConverter {
         List<UserAccount> connections = new ArrayList<>();
         List<Transfer> transfers = new ArrayList<>();
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(RoleType.ROLE_USER));
+        userRole.add(new RoleProfile(1, "USER"));
         UserAccount userAccount = new UserAccount(userInfoWithoutBalanceDTO.getFirstName(),
                 userInfoWithoutBalanceDTO.getLastName(),
                 userInfoWithoutBalanceDTO.getEmail(),
