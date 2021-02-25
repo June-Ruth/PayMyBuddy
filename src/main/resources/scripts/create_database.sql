@@ -1,31 +1,36 @@
-CREATE DATABASE pay_my_buddy CHARACTER SET utf8;
+# Create data base model for production
 
-CREATE TABLE pay_my_buddy.bank_account (
-    rib BIGINT UNSIGNED NOT NULL,
+# Create data base
+CREATE DATABASE IF NOT EXISTS pay_my_buddy CHARACTER SET utf8;
+
+#Create tables
+CREATE TABLE IF NOT EXISTS pay_my_buddy.bank_account (
+    bank_account_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    rib VARCHAR(40) NOT NULL,
     bank VARCHAR(40) NOT NULL,
     iban VARCHAR(40) NOT NULL,
     bic VARCHAR(15) NOT NULL,
-    PRIMARY KEY (rib)
+    PRIMARY KEY (bank_account_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.user_account (
+CREATE TABLE IF NOT EXISTS pay_my_buddy.user_account (
     user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(15) NOT NULL,
     last_name VARCHAR(15) NOT NULL,
     email VARCHAR(60) NOT NULL UNIQUE,
     password VARCHAR(60) NOT NULL,
-    bank_account_rib BIGINT UNSIGNED,
+    bank_account_id BIGINT UNSIGNED NOT NULL,
     balance DECIMAL(6,2) UNSIGNED NOT NULL,
     PRIMARY KEY (user_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.role_profile (
+CREATE TABLE IF NOT EXISTS pay_my_buddy.role_profile (
     role_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     role_name VARCHAR(15) NOT NULL UNIQUE,
     PRIMARY KEY (role_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.transfer(
+CREATE TABLE IF NOT EXISTS pay_my_buddy.transfer(
     transfer_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     sender_user_id BIGINT UNSIGNED NOT NULL,
     receiver_user_id BIGINT UNSIGNED NOT NULL,
@@ -37,29 +42,30 @@ CREATE TABLE pay_my_buddy.transfer(
     PRIMARY KEY (transfer_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.transfer_log (
+CREATE TABLE IF NOT EXISTS pay_my_buddy.transfer_log (
     transfer_id BIGINT UNSIGNED NOT NULL,
     sender_user_id BIGINT UNSIGNED NOT NULL,
     receiver_user_id BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (transfer_id, sender_user_id, receiver_user_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.connection (
+CREATE TABLE IF NOT EXISTS pay_my_buddy.connection (
     user_id BIGINT UNSIGNED NOT NULL,
     connection_id BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (user_id, connection_id)
 ) ENGINE = InnoDB;
 
-CREATE TABLE pay_my_buddy.user_role (
+CREATE TABLE IF NOT EXISTS pay_my_buddy.user_role (
     user_id BIGINT UNSIGNED NOT NULL,
     role_id BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (user_id, role_id)
 ) ENGINE = InnoDB;
 
+# Create table constraints
 ALTER TABLE pay_my_buddy.user_account
-    ADD CONSTRAINT fk_bank_account_rib
-        FOREIGN KEY (bank_account_rib)
-            REFERENCES bank_account(rib)
+    ADD CONSTRAINT fk_bank_account_id
+        FOREIGN KEY (bank_account_id)
+            REFERENCES bank_account(bank_account_id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION;
 
@@ -116,6 +122,3 @@ ALTER TABLE pay_my_buddy.user_role
             REFERENCES role_profile(role_id)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION;
-
-INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (1, 'USER');
-INSERT INTO pay_my_buddy.role_profile(role_id, role_name) values (2, 'ADMIN');

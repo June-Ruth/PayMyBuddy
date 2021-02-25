@@ -35,12 +35,12 @@ class TransferServiceTest {
     static void beforeAll() {
         List<RoleProfile> userRole = new ArrayList<>();
         userRole.add(new RoleProfile(1, "USER"));
-        BankAccount bankAccount1 = new BankAccount(123, "bank1", "iban1", "bic1");
-        BankAccount bankAccount2 = new BankAccount(456, "bank2", "iban2", "bic2");
+        BankAccount bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
+        BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);
         userAccount2 = new UserAccount("firstName2", "lastName2", "user2@mail.com",  "password2", userRole, bankAccount2, 0, null, null);
         transfer1 = new Transfer(userAccount1, userAccount2, "description1", LocalDate.of(2020, 1, 1), 100, 1, TransferType.TRANSFER_BETWEEN_USER);
-        transfer2 = new Transfer(userAccount1, userAccount1, "description2", LocalDate.of(2020, 2, 2), 100, 0, TransferType.TRANFER_WITH_BANK);
+        transfer2 = new Transfer(userAccount1, userAccount1, "description2", LocalDate.of(2020, 2, 2), 100, 0, TransferType.TRANSFER_WITH_BANK);
         transfers.add(transfer1);
         transfers.add(transfer2);
     }

@@ -73,7 +73,7 @@ public class UserAccount {
     @Valid
     @NotNull(message = "Bank account cannot be null")
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bank_account_rib", nullable = false)
+    @JoinColumn(name = "bank_account_id", nullable = false)
     private BankAccount bankAccount;
 
     /**
@@ -133,6 +133,8 @@ public class UserAccount {
         connection = pConnection;
         transferLog = pTransferLog;
     }
+
+    private UserAccount() { }
 
     /**
      * Getter ID.

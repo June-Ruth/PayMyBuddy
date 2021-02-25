@@ -28,6 +28,8 @@ public class RoleProfile {
         this.name = name;
     }
 
+    private RoleProfile() { }
+
     /**
      * Getter ID.
      * @return ID
