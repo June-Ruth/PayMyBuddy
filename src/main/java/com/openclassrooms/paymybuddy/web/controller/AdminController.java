@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class AdminController {
     }
 
     //TODO ; read all user (ADMIN ONLY)
+    @RolesAllowed("ADMIN")
     @GetMapping(value = "/admin/users")
     public List<UserInfoDTO> getAllUserAccounts() {
         List<UserAccount> userAccounts = userAccountService.findAllUserAccounts();
@@ -45,6 +47,7 @@ public class AdminController {
 
     //TODO ; problème de récursion infini
     //TODO : see all transfer (ADMIN ONLY)
+    @RolesAllowed("ADMIN")
     @GetMapping(value = "/admin/transfers")
     public List<Transfer> getAllTransfers() {
         List<Transfer> transfers = transferService.findAllTransfers();

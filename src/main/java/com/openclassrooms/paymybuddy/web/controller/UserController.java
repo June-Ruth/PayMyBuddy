@@ -10,6 +10,7 @@ import com.openclassrooms.paymybuddy.util.DtoConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -54,6 +55,7 @@ public class UserController {
     }
 
     //TODO : read my own user information
+    @Secured("#contact.name == principal.name")
     @GetMapping(value = "/users/{user_id}")
     public ResponseEntity<String> getUserAccountInfo(@PathVariable final int user_id) {
         UserAccount userAccount = userAccountService.findUserAccountById(user_id);

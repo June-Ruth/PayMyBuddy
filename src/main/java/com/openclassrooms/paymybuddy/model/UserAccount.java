@@ -45,7 +45,7 @@ public class UserAccount {
      */
     @Email(message = "Email should be valid")
     @Size(max = 60, message = "Email must be less than 60 characters")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     /**
