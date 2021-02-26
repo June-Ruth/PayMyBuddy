@@ -57,14 +57,14 @@ public class UserAccount {
 
     /**
      * Security role : User / User and Admin.
-     * @see RoleProfile
+     * @see Role
      */
     @NotNull
     @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn( name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private List<RoleProfile> roles;
+    private List<Role> roles;
 
     /**
      * Associated bank account.
@@ -118,7 +118,7 @@ public class UserAccount {
                        final String pLastName,
                        final String pEmail,
                        final String pPassword,
-                       final List<RoleProfile> pRoles,
+                       final List<Role> pRoles,
                        final BankAccount pBankAccount,
                        final double pBalance,
                        final List<UserAccount> pConnection,
@@ -221,7 +221,7 @@ public class UserAccount {
      * Getter roles.
      * @return list of roleProfile
      */
-    public List<RoleProfile> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
@@ -229,7 +229,7 @@ public class UserAccount {
      * Setter roles.
      * @param pRoles to set
      */
-    public void setRoles(List<RoleProfile> pRoles) {
+    public void setRoles(List<Role> pRoles) {
         roles = pRoles;
     }
 

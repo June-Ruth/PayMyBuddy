@@ -1,6 +1,7 @@
 package com.openclassrooms.paymybuddy.service;
 
 import com.openclassrooms.paymybuddy.model.*;
+import com.openclassrooms.paymybuddy.repository.RoleDAO;
 import com.openclassrooms.paymybuddy.repository.UserAccountDAO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,8 @@ public class UserAccountServiceTest {
     @Mock
     private static UserAccountDAO userAccountDAO;
 
+    private static RoleDAO roleDAO;
+
     private static UserAccountService userAccountService;
 
     private static Transfer transfer1;
@@ -37,8 +40,8 @@ public class UserAccountServiceTest {
 
     @BeforeAll
     static void beforeAll() {
-        List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER", null));
+        List<Role> userRole = new ArrayList<>();
+        userRole.add(roleDAO.findByName("ROLE_USER"));
         bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, network, transfers);
@@ -117,8 +120,8 @@ public class UserAccountServiceTest {
     @Test
     void saveDeleteConnectionInUserNetworkTest() {
         List<UserAccount> connections = new ArrayList<>();
-        List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER", null));
+        List<Role> userRole = new ArrayList<>();
+        userRole.add(roleDAO.findByName("ROLE_USER"));
         UserAccount userAccount3 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, connections, null);
         connections.add(userAccount2);
         when(userAccountDAO.findById(anyInt())).thenReturn(userAccount3).thenReturn(userAccount2);

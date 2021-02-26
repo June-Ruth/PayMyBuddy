@@ -1,6 +1,7 @@
 package com.openclassrooms.paymybuddy.service;
 
 import com.openclassrooms.paymybuddy.model.*;
+import com.openclassrooms.paymybuddy.repository.RoleDAO;
 import com.openclassrooms.paymybuddy.repository.TransferDAO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,8 @@ class TransferServiceTest {
 
     private static TransferService transferService;
 
+    private static RoleDAO roleDAO;
+
     private static Transfer transfer1;
     private static Transfer transfer2;
     private static UserAccount userAccount1;
@@ -33,8 +36,8 @@ class TransferServiceTest {
 
     @BeforeAll
     static void beforeAll() {
-        List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER", null));
+        List<Role> userRole = new ArrayList<>();
+        userRole.add(roleDAO.findByName("ROLE_USER"));
         BankAccount bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);

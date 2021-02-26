@@ -1,6 +1,7 @@
 package com.openclassrooms.paymybuddy.web.controller;
 
 import com.openclassrooms.paymybuddy.model.*;
+import com.openclassrooms.paymybuddy.repository.RoleDAO;
 import com.openclassrooms.paymybuddy.service.TransferService;
 import com.openclassrooms.paymybuddy.service.UserAccountService;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,6 +29,8 @@ class AdminControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private static RoleDAO roleDAO;
+
     @MockBean
     private UserAccountService userAccountService;
 
@@ -40,8 +43,8 @@ class AdminControllerTest {
 
     @BeforeAll
     static void beforeAll() {
-        List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER", null));
+        List<Role> userRole = new ArrayList<>();
+        userRole.add(roleDAO.findByName("ROLE_USER"));
         BankAccount bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         UserAccount userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);
