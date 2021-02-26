@@ -56,7 +56,7 @@ public final class DtoConverter {
         List<UserAccount> connections = new ArrayList<>();
         List<Transfer> transfers = new ArrayList<>();
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER"));
+        userRole.add(new RoleProfile(1, "USER", null));
         UserAccount userAccount = new UserAccount(userInfoWithoutBalanceDTO.getFirstName(),
                 userInfoWithoutBalanceDTO.getLastName(),
                 userInfoWithoutBalanceDTO.getEmail(),

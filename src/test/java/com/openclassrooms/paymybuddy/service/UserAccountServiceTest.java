@@ -38,7 +38,7 @@ public class UserAccountServiceTest {
     @BeforeAll
     static void beforeAll() {
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER"));
+        userRole.add(new RoleProfile(1, "USER", null));
         bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, network, transfers);
@@ -118,7 +118,7 @@ public class UserAccountServiceTest {
     void saveDeleteConnectionInUserNetworkTest() {
         List<UserAccount> connections = new ArrayList<>();
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER"));
+        userRole.add(new RoleProfile(1, "USER", null));
         UserAccount userAccount3 = new UserAccount("firstName1", "lastName1", "user1@mail.com", "password1", userRole, bankAccount1, 0, connections, null);
         connections.add(userAccount2);
         when(userAccountDAO.findById(anyInt())).thenReturn(userAccount3).thenReturn(userAccount2);

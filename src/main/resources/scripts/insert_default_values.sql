@@ -11,10 +11,10 @@ INSERT INTO pay_my_buddy.bank_account(bank_account_id, rib, bank, iban, bic) VAL
 INSERT INTO pay_my_buddy.bank_account(bank_account_id, rib, bank, iban, bic) VALUES (04, '12345123450123456789004', 'LCL', 'FR04 1234 1234 1234 1234 1234 123', 'ABCDEFGH987');
 
 # Insert default user accounts
-INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (01, 'FirstName01', 'LastName01', 'email01@test.com', 'password01', 01, 1000);
-INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (02, 'FirstName02', 'LastName02', 'email02@test.com', 'password02', 02, 1000);
-INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (03, 'FirstName03', 'LastName03', 'email03@test.com', 'password03', 03, 1000);
-INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (04, 'FirstName04', 'LastName04', 'email04@test.com', 'password04', 04, 1000);
+INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (01, 'FirstName01', 'LastName01', 'email01@test.com', '$2y$10$SF7o4.2Ox0ufI1HlK/odeOx1xBFg1Wrq/2jJGM4NKk/duByaEHNvS', 01, 1000);
+INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (02, 'FirstName02', 'LastName02', 'email02@test.com', '$2y$10$mwwpf20mt6JyO4ISBareKOjgUg6S9.aw4y6j4vkZEgsdMNaVOdnVq', 02, 1000);
+INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (03, 'FirstName03', 'LastName03', 'email03@test.com', '$2y$10$IPJ4TXsXKuv4Zwlx3gAwLutZ8bxoG.wPZ1Nu1md6bZM0y5V4ymPYi', 03, 1000);
+INSERT INTO pay_my_buddy.user_account(user_id, first_name, last_name, email, password, bank_account_id, balance) VALUES (04, 'FirstName04', 'LastName04', 'email04@test.com', '$2y$10$RoWfxgQQotQAhlnCz6oqWeAhpKo97VaBy5ZoHOZDkNVCtQAJzWn0u', 04, 1000);
 
 # Insert default transfers
 INSERT INTO pay_my_buddy.transfer(transfer_id, sender_user_id, receiver_user_id, description, transfer_date, amount, fee, transfer_type) VALUES (01, 01, 02, 'description 01', '2021-01-01', 100, 0.5, 'TRANSFER_BETWEEN_USER');
@@ -50,3 +50,5 @@ INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (01, 02);
 INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (02, 01);
 INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (03, 01);
 INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (04, 01);
+
+# Insert privilege and correct roles

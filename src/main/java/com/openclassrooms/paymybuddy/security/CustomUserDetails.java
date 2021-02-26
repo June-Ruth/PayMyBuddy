@@ -6,13 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class PrincipalUserDetails implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
     private final String username;
 
     private final String password;
 
-    public PrincipalUserDetails(final UserAccount userAccount) {
+    public CustomUserDetails(final UserAccount userAccount) {
         username = userAccount.getEmail();
         password = userAccount.getPassword();
     }

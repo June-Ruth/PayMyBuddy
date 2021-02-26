@@ -20,6 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserAccount userAccount = userAccountDAO.findByEmail(email);
         assert userAccount != null;
         // TODO : créer usernameNotFountException
-        return new PrincipalUserDetails(userAccount);
+        return new CustomUserDetails(userAccount);
     }
 }

@@ -41,7 +41,7 @@ class AdminControllerTest {
     @BeforeAll
     static void beforeAll() {
         List<RoleProfile> userRole = new ArrayList<>();
-        userRole.add(new RoleProfile(1, "USER"));
+        userRole.add(new RoleProfile(1, "USER", null));
         BankAccount bankAccount1 = new BankAccount("123", "bank1", "iban1", "bic1");
         BankAccount bankAccount2 = new BankAccount("456", "bank2", "iban2", "bic2");
         UserAccount userAccount1 = new UserAccount("firstName1", "lastName1", "user1@mail.com",  "password1", userRole, bankAccount1, 0, null, null);
