@@ -61,7 +61,6 @@ public class SetUpDataLoader implements ApplicationListener<ContextRefreshedEven
             if (!userAccountDAO.existsByEmail(userAccount.getEmail())) {
                 userAccountDAO.save(userAccount);
             }
-
             alreadySetup = true;
         }
     }

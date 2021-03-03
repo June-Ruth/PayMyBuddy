@@ -51,4 +51,4 @@ INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (02, 01);
 INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (03, 01);
 INSERT INTO pay_my_buddy.user_role(user_id, role_id) VALUES (04, 01);
 
-# Insert privilege and correct roles
+# Insert privilege and correct roles (surement mieux comme solution, voir avec le DataLoader)
